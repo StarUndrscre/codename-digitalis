@@ -13,6 +13,3 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
-
-# Godot git plugin
-addons/godot-git-plugin
