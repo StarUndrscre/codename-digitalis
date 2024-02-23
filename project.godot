@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Rhythmgame"
+run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [editor]
 
