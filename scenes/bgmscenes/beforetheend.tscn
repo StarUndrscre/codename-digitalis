@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ic8l178lvk3"]
+
+[ext_resource type="AudioStream" uid="uid://cbdarsyi63evw" path="res://bgm/before_the_end.ogg" id="1_4eldc"]
+
+[node name="BeforeTheEnd" type="Node2D"]
+
+[node name="Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_4eldc")
+autoplay = true
