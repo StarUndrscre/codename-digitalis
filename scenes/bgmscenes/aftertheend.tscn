@@ -1,19 +1,30 @@
 [gd_scene load_steps=5 format=3 uid="uid://brl2bysf6rbr2"]
 
-[ext_resource type="Script" path="res://scripts/music_test.gd" id="1_qvfu2"]
-[ext_resource type="AudioStream" uid="uid://dwojq1d6a722b" path="res://bgm/after_the_end_intro.ogg" id="2_7ja42"]
-[ext_resource type="AudioStream" uid="uid://cktedjoioskl3" path="res://bgm/after_the_end_loop.ogg" id="3_fv5t3"]
-[ext_resource type="Script" path="res://scripts/AfterTheEndLoop.gd" id="4_7ald2"]
+[ext_resource type="AudioStream" uid="uid://dwojq1d6a722b" path="res://bgm/after_the_end_intro.ogg" id="1_8ce15"]
+[ext_resource type="AudioStream" uid="uid://cktedjoioskl3" path="res://bgm/after_the_end_loop.ogg" id="2_vqrj7"]
+[ext_resource type="Script" path="res://scripts/AfterTheEndLoop.gd" id="3_xgly6"]
+
+[sub_resource type="GDScript" id="GDScript_cpug6"]
+script/source = "extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="AfterTheEnd" type="Node2D"]
-script = ExtResource("1_qvfu2")
+script = SubResource("GDScript_cpug6")
 
 [node name="Intro" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_7ja42")
+stream = ExtResource("1_8ce15")
 autoplay = true
 
 [node name="Loop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_fv5t3")
-script = ExtResource("4_7ald2")
+stream = ExtResource("2_vqrj7")
+script = ExtResource("3_xgly6")
 
 [connection signal="finished" from="Intro" to="Loop" method="_on_after_the_end_intro_finished"]
