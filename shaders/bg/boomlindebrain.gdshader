@@ -1,7 +1,9 @@
 shader_type canvas_item;
 
-#define RM_FACTOR   1.0
-#define RM_ITERS    90
+#define RM_FACTOR   0.9
+#define RM_ITERS     90
+
+uniform vec2 resolution = vec2(1280.0, 720.0);
 
 float plasma(vec3 r) {
 	float mx = r.x + TIME / 0.130;
@@ -29,15 +31,19 @@ float raymarch(vec3 pos, vec3 dir) {
 	return dist;
 }
 
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+}
+
 void fragment() {
+	vec2 RESOLUTION = resolution / TEXTURE_PIXEL_SIZE;
+	
 	float c, s;
-	float vfov = 90000.0;
+	float vfov = 3.14159 / 2.3;
 
-	vec3 cam = vec3(0.0, 0.0, 1.0);
+	vec3 cam = vec3(0.0, 0.0, 30.0);
 
-	vec2 uv = (FRAGCOORD.xy / SCREEN_PIXEL_SIZE.xy) - 0.5;
-	uv.x *= SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y;
-	uv.y *= -1.0;
+	vec2 uv = UV - 0.5;
+	uv.x *= RESOLUTION.x / RESOLUTION.y;
 
 	vec3 dir = vec3(0.0, 0.0, -1.0);
 
@@ -45,27 +51,21 @@ void fragment() {
 
 	c = cos(xrot);
 	s = sin(xrot);
-	dir = mix(
-		vec3(1.0, 0.0, 0.0),
-	    vec3(0.0,   c,  -s),
-	    vec3(0.0,   s,   c)
-	    ) * dir;
+	dir = mat3(vec3(1.0, 0.0, 0.0),
+	           vec3(0.0,   c,  -s),
+	           vec3(0.0,   s,   c)) * dir;
 
 	c = normalize(uv).x;
 	s = normalize(uv).y;
-	dir = mix( 
-		vec3(  c,  -s, 0.0),
-	    vec3(  s,   c, 0.0),
-	    vec3(0.0, 0.0, 1.0)
-	    ) * dir;
+	dir = mat3(vec3(  c,  -s, 0.0),
+	           vec3(  s,   c, 0.0),
+	           vec3(0.0, 0.0, 1.0)) * dir;
 
 	c = cos(0.7);
 	s = sin(0.7);
-	dir = mix(
-		vec3(  c, 0.0,   s),
-	    vec3(0.0, 1.0, 0.0),
-	    vec3( -s, 0.0,   c)
-	    ) * dir;
+	dir = mat3(vec3(  c, 0.0,   s),
+	           vec3(0.0, 1.0, 0.0),
+	           vec3( -s, 0.0,   c)) * dir;
 
 	float dist = raymarch(cam, dir);
 	vec3 pos = cam + dist * dir;
