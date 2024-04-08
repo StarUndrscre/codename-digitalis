@@ -2,7 +2,6 @@
 
 [ext_resource type="AudioStream" uid="uid://dwojq1d6a722b" path="res://bgm/after_the_end_intro.ogg" id="1_8ce15"]
 [ext_resource type="AudioStream" uid="uid://cktedjoioskl3" path="res://bgm/after_the_end_loop.ogg" id="2_vqrj7"]
-[ext_resource type="Script" path="res://scripts/AfterTheEndLoop.gd" id="3_xgly6"]
 
 [sub_resource type="GDScript" id="GDScript_pjiee"]
 script/source = "extends Node2D
@@ -10,6 +9,13 @@ signal intro_finished
 
 func _on_intro_finished():
 	emit_signal(\"intro_finished\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ff6m3"]
+script/source = "extends AudioStreamPlayer
+
+func _on_after_the_end_intro_finished():
+	self.play()
 "
 
 [node name="AfterTheEnd" type="Node2D"]
@@ -20,7 +26,7 @@ stream = ExtResource("1_8ce15")
 
 [node name="Loop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vqrj7")
-script = ExtResource("3_xgly6")
+script = SubResource("GDScript_ff6m3")
 
 [connection signal="finished" from="Intro" to="." method="_on_intro_finished"]
 [connection signal="finished" from="Intro" to="Loop" method="_on_after_the_end_intro_finished"]
