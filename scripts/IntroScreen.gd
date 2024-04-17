@@ -7,6 +7,7 @@ func _ready():
 	var music_choice = random.randi_range(0, 1)
 	
 	if music_choice == 0: # before the end
+		await get_tree().create_timer(5.0).timeout
 		get_node("BeforeTheEnd/Loop").play()
 	elif music_choice == 1: # after the end
 		get_node("AfterTheEnd/Intro").play()
