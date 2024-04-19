@@ -20,11 +20,13 @@ func _on_conductor_songfile_change():
 	seconds_per_measure = conductor.get_seconds_per_measure()
 	loaded_song_file = conductor.get_song_path()
 	bpm = conductor.get_bpm()
+	label.text = \"BPM: \" + var_to_str(bpm) + \"\\nSong file: \" + loaded_song_file + \"\\nTime elasped: \" + var_to_str(conductor.get_playback_position())
+	beat_delay = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	conductor.set_song_file(\"res://songs/puffer.ogg\")
-	label.text = \"BPM: \" + var_to_str(bpm) + \"\\nSong file: \" + loaded_song_file
+	conductor.set_song_file(\"res://songs/puffer/puffer.ogg\")
+	label.text = \"BPM: \" + var_to_str(bpm) + \"\\nSong file: \" + loaded_song_file + \"\\nTime elasped: \"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,8 +38,21 @@ func _process(delta):
 			var beat_tween = get_tree().create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 			beat_tween.tween_property(sprite, \"scale\", Vector2(0.9, 0.9), seconds_per_beat).from(Vector2(1, 1))
 			beat_delay = seconds_per_beat
+		label.text = \"BPM: \" + var_to_str(bpm) + \"\\nSong file: \" + loaded_song_file + \"\\nTime elasped: \" + var_to_str(conductor.get_playback_position())
 		
 		beat_delay -= delta
+
+
+func _on_after_the_end_button_pressed():
+	conductor.set_song_file(\"res://bgm/after_the_end_loop.ogg\")
+
+
+func _on_puffer_button_pressed():
+	conductor.set_song_file(\"res://songs/puffer/puffer.ogg\")
+
+
+func _on_before_the_end_button_pressed():
+	conductor.set_song_file(\"res://bgm/before_the_end.ogg\")
 "
 
 [node name="Realtest" type="Node2D"]
@@ -55,4 +70,31 @@ offset_top = 33.0
 offset_right = 441.0
 offset_bottom = 254.0
 
+[node name="AfterTheEndButton" type="Button" parent="."]
+offset_left = 563.0
+offset_top = 390.0
+offset_right = 800.0
+offset_bottom = 537.0
+action_mode = 0
+text = "After The End Loop"
+
+[node name="PufferButton" type="Button" parent="."]
+offset_left = 561.0
+offset_top = 76.0
+offset_right = 798.0
+offset_bottom = 223.0
+action_mode = 0
+text = "Puffer"
+
+[node name="BeforeTheEndButton" type="Button" parent="."]
+offset_left = 565.0
+offset_top = 231.0
+offset_right = 802.0
+offset_bottom = 378.0
+action_mode = 0
+text = "Before The End Loop"
+
 [connection signal="songfile_change" from="Conductor" to="." method="_on_conductor_songfile_change"]
+[connection signal="pressed" from="AfterTheEndButton" to="." method="_on_after_the_end_button_pressed"]
+[connection signal="pressed" from="PufferButton" to="." method="_on_puffer_button_pressed"]
+[connection signal="pressed" from="BeforeTheEndButton" to="." method="_on_before_the_end_button_pressed"]

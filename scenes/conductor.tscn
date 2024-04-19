@@ -48,8 +48,14 @@ func get_seconds_per_measure() -> float:
 func get_bpm() -> float:
 	return bpm
 
+func set_bpm(new_bpm : float) -> void:
+	song.stream.set_bpm(new_bpm)
+
 func get_song_path() -> String:
 	return song_path
+
+func get_playback_position() -> float:
+	return song.get_playback_position()
 "
 
 [sub_resource type="Resource" id="Resource_mb7gr"]
