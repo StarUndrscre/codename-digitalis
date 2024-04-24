@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://buq2ljcta36rg"]
+
+[sub_resource type="GDScript" id="GDScript_dq5x7"]
+resource_name = "ConductorScript"
+script/source = "
+"
+
+[node name="Conductor" type="Node"]
+script = SubResource("GDScript_dq5x7")
