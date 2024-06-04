@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjk8elgq5w8ue"]
 
-[ext_resource type="Script" path="res://Note.gd" id="1_6woxm"]
+[ext_resource type="Script" path="res://src/Note.gd" id="1_6woxm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tnrbw"]
 
