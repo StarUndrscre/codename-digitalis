@@ -12,8 +12,7 @@ var bpms: Array[BPMChange]:
 		return get_bpms()
 
 @export var stops: Array[Stop]
-
-
+@export var notes: Array[Note]
 
 func get_bpms() -> Array[BPMChange]:
 	if (cached_bpms != null):

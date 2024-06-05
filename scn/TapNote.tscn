@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjk8elgq5w8ue"]
 
-[ext_resource type="Script" path="res://src/Note.gd" id="1_6woxm"]
+[ext_resource type="Script" path="res://src/render/TapPlayNote.gd" id="1_nwpmy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tnrbw"]
 
 [node name="Note" type="Node2D"]
-script = ExtResource("1_6woxm")
+script = ExtResource("1_nwpmy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(100, 20)

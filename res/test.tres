@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Chart" load_steps=4 format=3 uid="uid://dtxb60uj0r2xp"]
+
+[ext_resource type="Script" path="res://src/chart/Chart.gd" id="1_k52ta"]
+[ext_resource type="Script" path="res://src/chart/note/TapNote.gd" id="1_mh1vc"]
+
+[sub_resource type="Resource" id="Resource_g5sgl"]
+script = ExtResource("1_mh1vc")
+column = 0
+beat = 1.0
+
+[resource]
+script = ExtResource("1_k52ta")
+offset = 0.0
+initial_bpm = 150.0
+bpm_changes = Array[Resource("res://src/chart/BPMChange.gd")]([])
+stops = Array[Resource("res://src/chart/Stop.gd")]([])
+notes = Array[Resource("res://src/chart/note/Note.gd")]([SubResource("Resource_g5sgl")])

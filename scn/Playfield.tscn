@@ -1,16 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ng4xlvpj3hcd"]
+[gd_scene load_steps=5 format=3 uid="uid://ng4xlvpj3hcd"]
 
 [ext_resource type="Script" path="res://src/Conductor.gd" id="1_80dmd"]
 [ext_resource type="AudioStream" uid="uid://bw1ayc38uh3h8" path="res://puffer.ogg" id="2_snhg7"]
+[ext_resource type="Resource" uid="uid://dtxb60uj0r2xp" path="res://res/test.tres" id="2_y3ssx"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_fraof"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_80dmd")
 scroll_speed = 6.0
-notes = {
-4.0: 1
-}
+chart = ExtResource("2_y3ssx")
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

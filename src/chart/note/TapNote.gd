@@ -11,6 +11,10 @@ enum NoteColumn {
 }
 
 @export var column: NoteColumn
+static var display: PackedScene = preload("res://scn/TapNote.tscn")
 
-func getNoteScene():
-	pass
+func getNoteScene() -> TapPlayNote:
+	var new_display = display.instantiate() as TapPlayNote
+	new_display.beat = self.beat
+	new_display.column = self.column
+	return new_display
